@@ -1,0 +1,16 @@
+#include <stdio.h>
+#include <arpa/inet.h>
+
+int main(int argc, char **argv) {
+  if (argc < 2){
+    printf("useage: hex2dd <hex_ip_addr>\n");
+    return 0;
+  }
+  char res[15];
+  char *r = inet_ntop(AF_INET, argv[1], res);
+  if (r == NULL)
+    printf("error hex_ip_addr: %s\n", argv[1]);
+  else
+    printf("%s\n", res);
+  return 0;
+}

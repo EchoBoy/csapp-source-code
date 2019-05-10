@@ -1,0 +1,24 @@
+#include <stdio.h>
+#include "../csapp.h"
+#include <unistd.h>
+
+
+unsigned int snooze(unsigned int secs) {
+  unsigned int reminde  = sleep(secs);
+  fprintf(stdout, "Slept for %u of %u secs\n", secs - reminde, secs);
+}
+
+void sigint_handler(int sig) {
+  fprintf(stdout, "Not now, try again later");
+}
+
+
+int main(int argc, char *argv[], char *enpv[]) {
+  if (signal(SIGINT, sigint_handler) == SIG_ERR)
+    unix_error("signal error");
+  if (argc > 1){
+    int sec = (unsigned int)atoi(argv[1]);
+    snooze(sec);
+  }
+  return 0;
+}

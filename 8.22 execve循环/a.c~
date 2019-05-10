@@ -1,0 +1,11 @@
+#include <stdio.h>
+#include <unistd.h>
+int main() {
+  int t = 3;
+  printf("start a and sleep %ds", t);
+  sleep(t);
+  printf("end a.");
+  
+  
+  return 0;
+}

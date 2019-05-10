@@ -1,0 +1,19 @@
+#include "../csapp.h"
+
+int g = 0;
+
+
+void sigint_handler(int sig)
+{
+  g += 1;
+}
+int main() {
+  if (signal(SIGINT, sigint_handler) == SIG_ERR) {
+      unix_error("signal error");
+    }
+  while (1) {
+    fprintf(stdout, "g: %d", g);
+    sleep(3);
+  }
+  return 0;
+}

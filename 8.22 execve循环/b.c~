@@ -1,0 +1,15 @@
+#include <stdio.h>
+#include <unistd.h>
+#include "../csapp.h"
+
+int main() {
+  fprintf(stdout, "start b\n");
+  fprintf(stdout, "fork b\n");
+  Fork();
+  fprintf(stdout, "execve a.out\n");
+  execve("a.out");
+  fprintf(stdout, "fork b again\n");
+  Fork();
+  fprintf(stdout, "end");
+  return 0;
+}
